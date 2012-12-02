@@ -1,2 +1,2 @@
-deco_model
+DecoModel
 ==========

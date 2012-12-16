@@ -31,7 +31,7 @@ DESC
         elsif defined?(ApplicationDecorator)
           "ApplicationDecorator"
         else
-          "RDecorator::Decorator"
+          "RDecorator::Base"
         end
       end
    end

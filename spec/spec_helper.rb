@@ -2,7 +2,7 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 # load Rails first
 require 'rails'
-require 'deco_model'
+require 'r_decorator'
 # needs to load the app before loading rspec/rails => capybara
 require 'fake_app/fake_app'
 require 'rspec/rails'

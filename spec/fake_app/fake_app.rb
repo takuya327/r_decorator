@@ -5,17 +5,17 @@ require 'action_view/railtie'
 # config
 ActiveRecord::Base.establish_connection(:adapter => 'sqlite3', :database => ':memory:')
 
-module DecoModelTestApp
+module RDecoratorTestApp
   class Application < Rails::Application
     config.secret_token = '"confusion" will be my epitaph.'
     config.session_store :cookie_store, :key => '_myapp_session'
     config.active_support.deprecation = :log
   end
 end
-DecoModelTestApp::Application.initialize!
+RDecoratorTestApp::Application.initialize!
 
 # routes
-DecoModelTestApp::Application.routes.draw do
+RDecoratorTestApp::Application.routes.draw do
   resources :authors, :only => [:index, :show] do
     resources :books, :only => :show
   end
@@ -33,7 +33,7 @@ end
 module ApplicationHelper; end
 
 # decorators
-class ApplicationDecorator < DecoModel::Decorator
+class ApplicationDecorator < RDecorator::Base
 end
 class AuthorDecorator < ApplicationDecorator
   def reverse_name

@@ -1,4 +1,4 @@
-# DecoModel
+# RDecorator
 
 A simple view helper for Rails 3. It's inspired by amatsuda/active_decorator and jcasimir/draper.
 
@@ -9,7 +9,7 @@ A simple view helper for Rails 3. It's inspired by amatsuda/active_decorator and
       end
     end
     
-    class PersonDecorator < DecoModel::Decorator
+    class PersonDecorator < RDecorator::Base
       def say
          origin.say * 3
       end
@@ -17,4 +17,4 @@ A simple view helper for Rails 3. It's inspired by amatsuda/active_decorator and
 
     person = Person.new
     person.say # == “Hey!”
-    person.decorate.say # “Hey!Hey!Hey!”
+    person.decorated.say # == “Hey!Hey!Hey!”

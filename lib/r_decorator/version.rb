@@ -1,3 +1,3 @@
-module DecoModel
+module RDecorator
   VERSION = "0.0.1"
 end

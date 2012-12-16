@@ -1,4 +1,4 @@
-module DecoModel
+module RDecorator
   module ViewContext
     class << self
       def current
@@ -15,7 +15,7 @@ module DecoModel
 
       included do
         before_filter do |controller|
-          DecoModel::ViewContext.current = controller.view_context
+          RDecorator::ViewContext.current = controller.view_context
         end
       end
     end

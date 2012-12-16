@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.version     = RDecorator::VERSION
   s.authors     = ["Takuya Fujii"]
   s.email       = ["takuya327@gmail.com"]
-  s.homepage    = 'https://github.com/takuya327/deco_mail'
-  s.summary     = %q{A simple view helper for Rails 3}
-  s.description = %q{A simple view helper for Rails 3. It's inspired by amatsuda/active_decorator}
+  s.homepage    = 'https://github.com/takuya327/r_decorator'
+  s.summary     = %q{A readable and simple view helper for Rails 3}
+  s.description = %q{A readable and simple view helper for Rails 3}
   
   s.rubyforge_project = "r_decorator"
   

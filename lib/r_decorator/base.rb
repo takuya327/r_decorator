@@ -34,7 +34,18 @@ module RDecorator
       @_classes ||= []
     end
     
+    def self.run_delay_decoration!
+      delay_decoration.each do |target, ignore_missing|
+        decorate!(target, ignore_missing)
+      end
+      @_delay = []
+    end
+    
     private
+    
+    def self.delay_decoration
+      @_delay ||= []
+    end
     
     def context
       @context ||= RDecorator::ViewContext.current
@@ -60,9 +71,16 @@ module RDecorator
       case target
       when String, Symbol
         begin
-          klass = target.to_s.camelize.constantize
+          target = target.to_s.camelize
+          klass = target.constantize
         rescue NameError
         end
+        
+        if klass == nil
+          delay_decoration << [target, ignore_missing]
+          return nil
+        end
+        
       else
         klass = target
       end

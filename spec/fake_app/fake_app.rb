@@ -37,7 +37,7 @@ class ApplicationDecorator < RDecorator::Base
 end
 class AuthorDecorator < ApplicationDecorator
   def name_link
-    link_to origin.name, author_path(origin), :title => origin.name
+    link_to origin.name, author_path(origin), :id => origin.name
   end
   
   def reverse_name

@@ -8,7 +8,6 @@ feature 'fallback to helpers' do
 
   scenario 'invoking action_view helper methods' do
     visit "/authors/#{@rhg.author.id}/books/#{@rhg.id}"
-    puts "page: #{page.html}"
     within 'a' do
       page.should have_content 'RHG'
     end

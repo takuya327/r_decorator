@@ -59,7 +59,10 @@ module RDecorator
     def self.target_to_class(target, ignore_missing = false)
       case target
       when String, Symbol
-        klass = target.to_s.camelize.safe_constantize
+        begin
+          klass = target.to_s.camelize.constantize
+        rescue NameError
+        end
       else
         klass = target
       end

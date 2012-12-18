@@ -19,7 +19,6 @@ feature 'decorating controller ivar' do
     visit '/authors'
     page.should have_content 'takahashim'
     page.should have_content 'takahashim'.reverse
-    page.should have_selector 'a', :text => "takahashim"
   end
 
   scenario "decorating models' array in ivar" do

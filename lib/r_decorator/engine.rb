@@ -1,9 +1,7 @@
 module RDecorator
   class Engine < ::Rails::Engine
     config.after_initialize do
-      RDecorator::Base.descendants.each do |klass|
-        klass.run_delay_decoration!
-      end
+      Dir["#{Rails.root}/app/decorators/**/*.rb"].each {|f| require_dependency f}
     end
   end
 end

@@ -36,6 +36,10 @@ module ApplicationHelper; end
 class ApplicationDecorator < RDecorator::Base
 end
 class AuthorDecorator < ApplicationDecorator
+  def name_link
+    link_to origin.name, author_path(origin), title: origin.name
+  end
+  
   def reverse_name
     name.reverse
   end
@@ -52,7 +56,7 @@ class BookDecorator < ApplicationDecorator
   def upcased_title
     title.upcase
   end
-
+  
   def link
     link_to title, "#{request.protocol}#{request.host_with_port}/assets/sample.png"
   end

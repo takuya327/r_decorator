@@ -7,7 +7,8 @@ require 'r_decorator'
 require 'fake_app/fake_app'
 require 'rspec/rails'
 require 'capybara/rspec'
-  
+require 'r_decorator/rspec'
+
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}

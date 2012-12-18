@@ -59,16 +59,15 @@ module RDecorator
     def self.target_to_class(target, ignore_missing = false)
       case target
       when String, Symbol
-        if ignore_missing
-          klass = target.to_s.camelize.safe_constantize
-          return nil if klass == nil
-        else
-          klass = target.to_s.camelize.constantize
-        end
+        klass = target.to_s.camelize.safe_constantize
       else
         klass = target
       end
-      raise "Invalid target for decoration(#{self}): #{klass}" unless klass.is_a?(Class)
+      
+      unless klass.is_a?(Class)
+        raise "Invalid target for decoration(#{self}): #{klass}" unless ignore_missing
+        klass = nil
+      end
       klass
     end
     

@@ -25,6 +25,12 @@ feature "Definition" do
       origin.say * 3
     end
   end
+  
+  module NoClass
+  end
+
+  class NoClassDecorator < RDecorator::Base
+  end
 
   scenario "Auto decoration by class-name" do
     foo = Foo.new

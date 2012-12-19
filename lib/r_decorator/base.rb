@@ -58,14 +58,12 @@ module RDecorator
     end
     
     def self.decorate_class!(klass)
-      unless klass.method_defined?(:decorated)
-        klass.class_eval <<-STR
-          def decorated(options={}) 
-            @_decorator ||= #{self.name}.new(self, options)
-          end
-          alias_method :deco, :decorated
-        STR
-      end
+      klass.class_eval <<-STR
+        def decorated(options={}) 
+          @_decorator ||= #{self.name}.new(self, options)
+        end
+        alias_method :deco, :decorated
+      STR
     end
     
     def self.target_to_class(target, ignore_missing = false)

@@ -31,6 +31,18 @@ feature "Definition" do
 
   class NoClassDecorator < RDecorator::Base
   end
+  
+  class Parent
+  end
+  
+  class Child < Parent
+  end
+  
+  class ParentDecorator < RDecorator::Base
+  end
+
+  class ChildDecorator < ParentDecorator
+  end
 
   scenario "Auto decoration by class-name" do
     foo = Foo.new
@@ -40,6 +52,13 @@ feature "Definition" do
   scenario "using 'decorate_for'" do
     this = This.new
     this.decorated.say.should eq "Yeah!Yeah!Yeah!"
+  end
+
+  scenario "inheritance" do
+    parent = Parent.new
+    child = Child.new
+    parent.decorated.should be_instance_of(ParentDecorator)
+    child.decorated.should be_instance_of(ChildDecorator)
   end
   
 end

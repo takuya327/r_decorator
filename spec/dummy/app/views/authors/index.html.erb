@@ -1,23 +1,17 @@
-<h1>Listing authors</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
 <% @authors.each do |author| %>
-  <tr>
-    <td><%= author.name %></td>
-    <td><%= link_to 'Show', author %></td>
-    <td><%= link_to 'Edit', edit_author_path(author) %></td>
-    <td><%= link_to 'Destroy', author, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+  <%= author.deco.name %>
+  <%= author.deco.reverse_name %>
+  <%= author.deco.name_link %>
+
+  <% if params[:partial] == 'collection' %>
+    <%= render author.books %>
+  <% elsif params[:partial] == 'locals' %>
+    <% author.books.each do |book| %>
+      <%= render :partial => 'books/book_locals', :locals => {:b => book} %>
+    <% end %>
+  <% else %>
+    <% author.books.each do |book| %>
+      <%= render book %>
+    <% end %>
+  <% end %>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Author', new_author_path %>

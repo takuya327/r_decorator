@@ -30,6 +30,12 @@ module RDecorator
       klass.__send__( :decorate!, target, true )
     end
     
+    def self.redecoate!
+      decorating_classes.each do |klass|
+        decorate_class!(klass)
+      end
+    end
+    
     def self.decorating_classes
       @_classes ||= []
     end
@@ -45,15 +51,21 @@ module RDecorator
       return nil unless klass
       
       unless decorating_classes.include?(klass)
+        decorate_class!(klass)
+        decorating_classes << klass
+      end
+      klass
+    end
+    
+    def self.decorate_class!(klass)
+      unless klass.method_defined?(:decorated)
         klass.class_eval <<-STR
           def decorated(options={}) 
             @_decorator ||= #{self.name}.new(self, options)
           end
           alias_method :deco, :decorated
         STR
-        decorating_classes << klass
       end
-      klass
     end
     
     def self.target_to_class(target, ignore_missing = false)
